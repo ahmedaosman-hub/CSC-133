@@ -6,15 +6,37 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
+		<item key="selection" value="leftButton"/>
 		<list key="findhistory">
+			<item value="btnLeft"/>
+			<item value="btnAccelerate"/>
+			<item value="gw"/>
+			<item value="hcmd"/>
+			<item value="qcmd"/>
+			<item value="abtcmd"/>
+			<item value="tb"/>
+			<item value="accmd"/>
+			<item value="snc"/>
+			<item value="chkBoxcmd"/>
 			<item value=" "/>
 		</list>
 		<list key="replacehistory">
+			<item value="leftButton"/>
+			<item value="buttonAccelerate"/>
+			<item value="gameWorld"/>
+			<item value="helpCommand"/>
+			<item value="quitCommand"/>
+			<item value="aboutCommand"/>
+			<item value="toolBar"/>
+			<item value="accelerateCommand"/>
+			<item value="toolbar"/>
+			<item value="soundCommand"/>
+			<item value="checkBox"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="344"/>
-		<item key="DIALOG_Y_ORIGIN" value="116"/>
+		<item key="DIALOG_X_ORIGIN" value="788"/>
+		<item key="DIALOG_Y_ORIGIN" value="87"/>
 		<item key="DIALOG_WIDTH" value="336"/>
 		<item key="DIALOG_HEIGHT" value="402"/>
 		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>

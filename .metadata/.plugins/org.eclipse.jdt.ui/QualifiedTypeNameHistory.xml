@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.codename1.ui.TextArea"/>
+    <fullyQualifiedTypeName name="com.codename1.ui.layouts.BoxLayout"/>
+    <fullyQualifiedTypeName name="com.codename1.ui.Label"/>
+    <fullyQualifiedTypeName name="com.codename1.charts.util.ColorUtil"/>
+    <fullyQualifiedTypeName name="com.codename1.ui.layouts.BorderLayout"/>
+    <fullyQualifiedTypeName name="com.codename1.ui.Toolbar"/>
+    <fullyQualifiedTypeName name="com.codename1.ui.CheckBox"/>
+</qualifiedTypeNameHistroy>

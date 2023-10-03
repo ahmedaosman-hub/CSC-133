@@ -6,41 +6,78 @@ import java.util.ArrayList;
 import java.util.Random;
 
 // Represents the game's model
-public class GameWorld {
-	private Random rand = new Random();
-	private int timer;
-	private Ant ant;
-	private ArrayList<GameObject> gameObjectList = new ArrayList<GameObject>();
-	private int flagSize = 15;
-	private int antSize = 25;
-	private boolean isExit = false;
+public class GameWorld extends Observable {
+	private int currentClockTime;
+	private int livesRemaining;
+	private GameWorldCollection gameObjects;
+	private PlayerAnt player;
+	Random rand = new Random();
+	private boolean soundOn; 
+	
 
 	// Starting game and reset game objects
 	public void init() {
-		// Clears the game object list before starting
-		gameObjectList.clear();
+		this.currentClockTime = 0; 
+		this.soundOn = true;
+		gameObjects = new GameWorldCollection;
+		addGameObjects();
+		this.setChanged();
+		this.notifyObservers(this); 
+	}
 
-		// Creates a single Ant
-		gameObjectList.add(ant = new Ant(antSize, new Point(randX(), randY()), 0));
-
-		// Creating flags (between 4 and 9 flags)
-		int flagCount = 9; //4 + rand.nextInt(6); // Randomly choose between 4 and 9 flags
-		for (int i = 1; i <= flagCount; i++) {
-			gameObjectList.add(new Flag(flagSize, new Point(randX(), randY()), i));
+	public void addGameObjects() {
+		float x = 0, y = 0;
+		int flagObjects = 9;
+		int foodSpiderObject = 3;
+		gameObjects.add(PlayerAnt.getPlayerAnt());
+		player = PlayerAnt.getPlayerAnt();
+		for (int i = 1; i < flagObjects; i++) {
+			gameObjects.add(new Flag(i));
 		}
-
-		// Creating at least 2 spiders
-		int spiderCount = 2 + rand.nextInt(2); // Randomly choose 2 or 3 spiders
-		for (int i = 1; i <= spiderCount; i++) {
-			gameObjectList.add(new Spider(randObjSize(), new Point(randX(), randY())));
+		for (int i = 0; i < foodSpiderObject; i++) {
+			gameObjects.add(new FoodStation());
 		}
-
-		// Creating at least 2 food stations
-		int foodStationCount = 2 + rand.nextInt(3); // Randomly choose 2, 3, or 4 food stations
-		for (int i = 1; i <= foodStationCount; i++) {
-			gameObjectList.add(new FoodStation(randObjSize(), new Point(randX(), randY())));
+		for (int i = 0; i < foodSpiderObject; i++) {
+			gameObjects.add(new Spider());
+		}
+		for (int i = 0; i < 3; i++) {
+			NonPlayerAnt npa = new NonPlayerAnt();
+			int choice = rand.nextInt(2);
+			if ( choice == 0) {
+				npa.setStrategy(new AttackStrategy(gameObjects.npa));
+			}
+			else {
+				npa.setStrategy(new FlagStrategy(gameObjects.npa));
+				gameObjects.add(npa);
+			}
+		}
+		
+		IIterator itr = gameObjects.getIterator();
+		while(itr.hasNext()) {
+			GameObjects tempObject = itr.getNext();
+			if (tempObject instanceof Flags) {
+				if (((Flags)tempObject).getSequenceNumber() == 1) {
+					x = ((Flags))tempObject).getX();
+					y = ((Flags))tempObject).getY();
+				}
+			}
+		}
+		
+		IIterator itr2 = gameObjects.getIterator();
+		while(itr2.hasNext()) {
+			GameObjects tempObject2 = itr2.getNext();
+			if (tempObject2 instanceof PlayerAnt) {
+				((PlayerAnt)tempObject2).setX(x);
+				((PlayerAnt)tempObject2).setY(y);
+			}
+			else if (tempObject2 instanceof NonPlayerAnt) {
+				((NonPlayerAnt) tempObject2).setX(x + rand.nextInt(100));
+				((NonPlayerAnt) tempObject2).setY(y + rand.nextInt(100));
+				
+			}
 		}
 	}
+	
 
 	// Press 'a' to increase speed or 'b' to decrease speed of ant
 	public void setAntSpeed(int x) {
