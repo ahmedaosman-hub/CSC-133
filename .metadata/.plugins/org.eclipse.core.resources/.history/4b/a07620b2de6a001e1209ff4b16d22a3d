@@ -14,7 +14,8 @@ public class Fixed extends GameObject {
 
 	public Fixed(int size, Point location, int color) {
 super(color);
-super.setLocation(location);
+super.setSize(size);
+super.setLocation(location.getX(), location.getY());
 }
 
 	@Override
