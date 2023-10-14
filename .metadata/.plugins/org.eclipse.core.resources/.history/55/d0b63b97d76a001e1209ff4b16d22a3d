@@ -8,20 +8,15 @@ import java.util.Random;
 public class Spider extends Moveable {
 	
 	private Random rand = new Random();
-	private int spiderBiteDamage; 
 	
 	public Spider(int size, Point location) {
 		super(size, location ); 
 		super.setColor(ColorUtil.rgb(0, 0, 0));
 		setSpeed(randSpeed());
 		setHeading(randHeading());
-		spiderBiteDamage = rand.nextInt(11);
 	}
 	
-	
-	public int getSpiderBiteDamage() {
-		return spiderBiteDamage; 
-	}
+
 	@Override
 	public void setColor(int color) {
 		

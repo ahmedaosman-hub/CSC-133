@@ -74,8 +74,8 @@ public class Ant extends Moveable implements IFoodie {
 		return healthLevel;
 	}
 
-	public void setHealthLevel(int health) {
-		this.healthLevel = health;
+	public int setHealthLevel() {
+		
 	}
 	// Getter for lastFlagReached attribute
 
@@ -88,15 +88,6 @@ public class Ant extends Moveable implements IFoodie {
 		return lives;
 	}
 
-	public void fadeColor() {
-		int currentColor = getColor(); 
-		
-		int red = ColorUtil.red(currentColor);
-		
-		red = Math.max(0, red - 10);
-		
-		setColor(ColorUtil.rgb(red, ColorUtil.green(currentColor), ColorUtil.blue(currentColor)));
-	}
 	@Override
 	public void setSpeed(int speed) {
 		if (speed >= 0 && speed <= (maximumSpeed)) {
@@ -113,6 +104,25 @@ public class Ant extends Moveable implements IFoodie {
 		}
 	}
 
+	// Method to handle collisions
+
+	public void collision(char collisionType) {
+		if (healthLevel != 100) {
+			if (collisionType == 'f') {
+				// Collided with a food station
+				healthLevel += 10;
+				setColor(ColorUtil.rgb(0, 255, 0));
+				checkSpeed();
+
+			} else if (collisionType == 'g') {
+				// Collided with a spider
+
+				healthLevel -= 5;
+				setColor(ColorUtil.rgb((red -= 5), 0, 0));
+				checkSpeed();
+			}
+		}
+	}
 
 	// Method to handle flag collisions
 

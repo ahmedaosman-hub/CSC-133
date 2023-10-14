@@ -74,7 +74,7 @@ public class Ant extends Moveable implements IFoodie {
 		return healthLevel;
 	}
 
-	public void setHealthLevel(int health) {
+	public int setHealthLevel() {
 		this.healthLevel = health;
 	}
 	// Getter for lastFlagReached attribute
@@ -113,6 +113,7 @@ public class Ant extends Moveable implements IFoodie {
 		}
 	}
 
+}
 
 	// Method to handle flag collisions
 

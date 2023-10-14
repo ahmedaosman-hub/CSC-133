@@ -123,19 +123,8 @@ public class GameWorld {
 
 		for (GameObject gameObject : gameObjectList) {
 			if (gameObject instanceof Spider) {
-				Spider spider = (Spider) gameObject;
-				
-				if (spider.getX() == ant.getX() && spider.getY() == ant.getY()) {
-					int currentHealth = ant.getHealthLevel();
-					int damage = spider.getSpiderBiteDamage();
-					
-					int newHealth = currentHealth - damage;
-					
-					ant.setHealthLevel(newHealth);
-					
-					ant.fadeColor();
-					
-					System.out.println("Ant's health level after spider bite:" + newHealth);
+				if (gameObject.getX() == ant.getX() && gameObject.getY() == ant.getY()) {
+					ant.collision('g');
 				}
 			}
 		}
