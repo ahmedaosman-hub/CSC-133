@@ -14,14 +14,9 @@ public class GameWorld {
 	private int flagSize = 15;
 	private int antSize = 25;
 	private boolean isExit = false;
-	private int lastFlagReached;
-	private int totalFlagCount = 10; 
-	
 
 	// Starting game and reset game objects
 	public void init() {
-		isExit = false;
-		lastFlagReached = 1;
 		// Clears the game object list before starting
 		gameObjectList.clear();
 
@@ -148,19 +143,7 @@ public class GameWorld {
 
 	// Press 't' for game tick
 	public void tick() {
-		if (!isExit) {
-			timer++;
-			
-		
-			int currentFoodLevel = ant.getFoodLevel();
-			int currentHealthLevel = ant.getHealthLevel();
-			if (currentFoodLevel <= 0 || currentHealthLevel <= 0) {
-				antLostLife();
-			}
-			
-			if (lastFlagReached == totalFlagCount) {
-				gameWin();
-			}
+		timer++;
 
 		// update spider's heading with small random changes
 		for (GameObject gameObject : gameObjectList) {
@@ -183,6 +166,7 @@ public class GameWorld {
 
 		// reduce ant's food level based on foodConsumptionRate
 		int foodConsumptionRate = ant.getFoodConsumptionRate();
+		int currentFoodLevel = ant.getFoodLevel();
 		
 		int newFoodLevel = currentFoodLevel - foodConsumptionRate;
 		
@@ -191,7 +175,6 @@ public class GameWorld {
 		// increment clock
 		timer++;
 
-	}
 	}
 
 	// Press 'd' to print the current game/ant state values
@@ -258,31 +241,5 @@ public class GameWorld {
 
 	private int randObjSize() {
 		return 15 + rand.nextInt(15);
-	}
-	
-	public void antLostLife() {
-		ant.loseLife();
-		ant.resetAnt();
-		ant.fadeColor();
-		 
-		if (ant.getLives() <= 0) {
-			gameLost();
-		}
-		
-	}
-	
-	public void gameWin() {
-		isExit = true;
-		System.out.println("Game Over, you win! Total time: " + timer);
-		
-	}
-	public void gameLost() {
-		isExit = true;
-		System.out.println("Game over, you failed!");
-	}
-	public void resetGame() {
-		isExit = false;
-		lastFlagReached = 1;
-		timer = 0;
 	}
 }

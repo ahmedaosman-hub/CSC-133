@@ -139,9 +139,5 @@ public class Ant extends Moveable implements IFoodie {
 		String myDesc = " maxSpeed=" + maximumSpeed + "food consumption= " + foodConsumptionRate;
 		return "Ant:" + parentDesc + myDesc;
 	}
-	
-	public void loseLife() {
-		lives --;
-	}
 
 }

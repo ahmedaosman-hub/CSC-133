@@ -15,7 +15,6 @@ public class GameWorld {
 	private int antSize = 25;
 	private boolean isExit = false;
 	private int lastFlagReached;
-	private int totalFlagCount = 10; 
 	
 
 	// Starting game and reset game objects
@@ -150,7 +149,6 @@ public class GameWorld {
 	public void tick() {
 		if (!isExit) {
 			timer++;
-			
 		
 			int currentFoodLevel = ant.getFoodLevel();
 			int currentHealthLevel = ant.getHealthLevel();
@@ -183,6 +181,7 @@ public class GameWorld {
 
 		// reduce ant's food level based on foodConsumptionRate
 		int foodConsumptionRate = ant.getFoodConsumptionRate();
+		int currentFoodLevel = ant.getFoodLevel();
 		
 		int newFoodLevel = currentFoodLevel - foodConsumptionRate;
 		
@@ -191,7 +190,6 @@ public class GameWorld {
 		// increment clock
 		timer++;
 
-	}
 	}
 
 	// Press 'd' to print the current game/ant state values
