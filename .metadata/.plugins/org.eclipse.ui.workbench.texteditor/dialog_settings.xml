@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="leftButton"/>
+		<item key="selection" value="foodStation"/>
 		<list key="findhistory">
+			<item value="FoodStation"/>
 			<item value="btnLeft"/>
 			<item value="btnAccelerate"/>
 			<item value="gw"/>
