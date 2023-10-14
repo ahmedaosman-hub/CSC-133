@@ -9,8 +9,6 @@ public class Spider extends Moveable {
 	
 	private Random rand = new Random();
 	private int spiderBiteDamage; 
-	private int foodLevel;
-	
 	
 	public Spider(int size, Point location) {
 		super(size, location ); 
@@ -65,10 +63,5 @@ public class Spider extends Moveable {
 	public String toString() {
 		String parentDesc = super.toString();
 		return "Spider: " + parentDesc;
-	}
-	
-	@Override 
-	public void setFoodLevel(int foodLevel) {
-		this.foodLevel = foodLevel;
 	}
 }
