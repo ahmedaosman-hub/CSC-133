@@ -105,14 +105,12 @@ public class GameWorld {
 							int temporary = ((FoodStation) gameObjectList.get(j)).getCapacity();
 							((Ant) gameObjectList.get(i)).setFoodLevel(temporary);
 							((FoodStation) gameObjectList.get(j)).setCapacity(0);
-
 							break;
 						}
 					}
 				}
 			}
 		}
-
 		
 	}
 		
