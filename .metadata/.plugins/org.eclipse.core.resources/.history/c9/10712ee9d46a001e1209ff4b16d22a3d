@@ -134,13 +134,11 @@ public class GameWorld {
 	public void tick() {
 		timer++;
 
-		// update spider's heading with small random changes
+		// update spider's heading
 		for (GameObject gameObject : gameObjectList) {
 			if (gameObject instanceof Spider) {
 				Spider spider = (Spider) gameObject;
-				int randomChange = -5 + rand.nextInt(11);
-				int newHeading = spider.getHeading() + randomChange; 
-				spider.setHeading(newHeading);
+				spider.getHeading();
 			}
 		}
 
@@ -155,11 +153,7 @@ public class GameWorld {
 
 		// reduce ant's food level based on foodConsumptionRate
 		int foodConsumptionRate = ant.getFoodConsumptionRate();
-		int currentFoodLevel = ant.getFoodLevel();
-		
-		int newFoodLevel = currentFoodLevel - foodConsumptionRate;
-		
-		ant.setFoodLevel(newFoodLevel);
+		ant.setFoodLevel(foodConsumptionRate);
 		System.out.println("Tick Tock: " + timer);
 		// increment clock
 		timer++;

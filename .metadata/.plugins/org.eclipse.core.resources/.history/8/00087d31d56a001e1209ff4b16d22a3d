@@ -155,11 +155,7 @@ public class GameWorld {
 
 		// reduce ant's food level based on foodConsumptionRate
 		int foodConsumptionRate = ant.getFoodConsumptionRate();
-		int currentFoodLevel = ant.getFoodLevel();
-		
-		int newFoodLevel = currentFoodLevel - foodConsumptionRate;
-		
-		ant.setFoodLevel(newFoodLevel);
+		ant.setFoodLevel(foodConsumptionRate);
 		System.out.println("Tick Tock: " + timer);
 		// increment clock
 		timer++;
