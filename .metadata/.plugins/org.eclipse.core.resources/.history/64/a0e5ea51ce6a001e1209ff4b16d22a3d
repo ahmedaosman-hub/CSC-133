@@ -95,25 +95,23 @@ public class GameWorld {
 
 	// Press 'f' for collision between ant and a foodstation
 	public void foodStationCollision() {
-		System.out.println("Colliding with foodstation! Yummy");
-		for (int i = 0; i < gameObjectList.size(); i++) {
-			if (gameObjectList.get(i) instanceof Ant) {
-				for (int j=0; j< gameObjectList.size(); j++) {
-					if (gameObjectList.get(j) instanceof FoodStation) {
-						if (((FoodStation) gameObjectList.get(j)).getCapacity() != 0)
-						{
-							int temporary = ((FoodStation) gameObjectList.get(j)).getCapacity();
-							((Ant) gameObjectList.get(i)).setFoodLevel(temporary);
-							((FoodStation) gameObjectList.get(j)).setCapacity(0);
-							break;
-						}
-					}
+		for (GameObject gameObject : gameObjectList) {
+			if (gameObject instanceof FoodStation) {
+				FoodStation foodStation = (FoodStation) gameObject;
+				int capacity = foodStation.getCapacity();
+
+				if (capacity != 0) {
+					ant.setFoodLevel(capacity);
+					foodStation.setCapacity(0);
+					gameObject.setColor(ColorUtil.rgb(0, 255, 0));
 				}
 			}
+
 		}
-		
+		System.out.println("Colliding with foodstation! Yummy");
+
+		gameObjectList.add(new FoodStation(randObjSize(), new Point(randX(), randY())));
 	}
-		
 
 	// Press 'g' for collision between ant and a spider
 	public void spiderCollision() {
