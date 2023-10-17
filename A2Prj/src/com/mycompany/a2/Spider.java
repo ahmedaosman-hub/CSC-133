@@ -8,8 +8,7 @@ import java.util.Random;
 public class Spider extends Moveable {
 	
 	private Random rand = new Random();
-	private int spiderBiteDamage; 
-	private int foodLevel;
+	
 	
 	
 	public Spider(int size, Point location) {
@@ -17,13 +16,9 @@ public class Spider extends Moveable {
 		super.setColor(ColorUtil.rgb(0, 0, 0));
 		setSpeed(randSpeed());
 		setHeading(randHeading());
-		spiderBiteDamage = rand.nextInt(11);
 	}
 	
 	
-	public int getSpiderBiteDamage() {
-		return spiderBiteDamage; 
-	}
 	@Override
 	public void setColor(int color) {
 		
@@ -44,31 +39,10 @@ public class Spider extends Moveable {
 	private int randSpeed() {
 		return 5 + rand.nextInt(5);
 	}
-	@Override
-	public void move() {
-		int randomChange = new Random().nextInt(11) - 5;
-		int newHeading = getHeading() + randomChange;
-		
-		if (newHeading < 0) {
-			newHeading += 360;
-		}
-		else if (newHeading >= 360) {
-			newHeading -= 360;
-		}
-		
-		setHeading(newHeading);
-		
-		super.move();
-	}
 	
-
+	
 	public String toString() {
 		String parentDesc = super.toString();
 		return "Spider: " + parentDesc;
-	}
-	
-	@Override 
-	public void setFoodLevel(int foodLevel) {
-		this.foodLevel = foodLevel;
-	}
+	}	
 }

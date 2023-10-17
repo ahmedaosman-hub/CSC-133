@@ -1,0 +1,15 @@
+package com.mycompany.a2;
+
+public class CommandAntCollision extends Command{
+	private GameWorld gw;
+	
+	public CommandAntCollision(GameWorld gw) {
+		super("Collided with spiders");
+		this.gw = gw;
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent ev) {
+		gw.spiderCollision("r"); 
+	}
+}

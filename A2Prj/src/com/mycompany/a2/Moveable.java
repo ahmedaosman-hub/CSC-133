@@ -3,27 +3,17 @@ package com.mycompany.a2;
 import com.codename1.charts.models.Point;
 
 public class Moveable extends GameObject {
-	private int heading;
-	private int speed;
-	private int foodLevel;
-
-	public Moveable(int color) {
-		super(color);
-		
-	}
+	private int heading = 0;
+	private int speed = 0;
+	private int foodLevel; 
 	
-	public Moveable(int color, int size) {
-		super(color,size);
-	}
 	
-
-
-
 	public Moveable(int size, Point location) {
-super(size);
-this.setLocation(location);
+		super(size);
 }
 
+	
+	
 	public int getHeading() {
 		return heading;
 	}
@@ -70,5 +60,7 @@ this.setLocation(location);
 		String myDesc = "foodLevel: " + foodLevel + " heading=" + heading + " speed=" + speed;
 		return parentDesc + myDesc;
 	}
+
+
 
 }

@@ -13,19 +13,15 @@ public class Ant extends Moveable implements IFoodie {
 	private int lastFlagReached = 1;
 	private int lives = 3;
 	private static int red = 255;
+	private boolean isDead = false; 
 
-	public Ant() {
-		super(red);
-	}
+
 
 	// Constructor to initialize the ant
 	public Ant(int size, Point location, int heading) {
 		super(size, location);
 		super.setSpeed(5);
-		super.setHeading(heading);
 		super.setColor(ColorUtil.rgb(red, 0, 0));
-		lastFlagReached = 1;
-		healthLevel = 10;
 	}
 
 	// Getter for maximumSpeed
@@ -142,6 +138,13 @@ public class Ant extends Moveable implements IFoodie {
 	
 	public void loseLife() {
 		lives --;
+	}
+	
+	public int getRed() {
+		return red;
+	}
+	public void setRed(int add) {
+		red -= add;
 	}
 
 }

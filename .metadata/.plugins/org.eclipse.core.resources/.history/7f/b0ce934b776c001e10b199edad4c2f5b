@@ -1,0 +1,114 @@
+package com.mycompany.a2;
+
+import com.codename1.charts.util.ColorUtil;
+
+import java.util.Observable;
+
+import com.codename1.*;
+import com.codename1.ui.Component;
+import com.codename1.ui.Label;
+import com.codename1.ui.layouts.FlowLayout;
+import com.codename1.ui.plaf.Border;
+
+public class ScoreView extends Container implements Observer {
+	private GameWorld model;
+	
+	private Label livesLabel;
+	private Label livesValue;
+	private Label clockLabel;
+	private Label clockValue;
+	private Label lastFlagLabel;
+	private Label lastFlagValue;
+	private Label foodLevelLabel;
+	private Label foodLevelValue;
+	private Label healthLevelLabel;
+	private Label healthLevelValue;
+	private Label soundLabel;
+	private Label soundValue;
+	
+	
+	public ScoreView(Observable gw) {
+		model = ((GameWorld) gw);
+		gw.addObserver(this);
+		this.setLayout(new FlowLayout(Component.CENTER));
+		this.getAllStyles().setBorder(Border.createLineBorder(4, ColorUtil.BLACK));
+		this.setupLabels();
+		
+		this.add(livesLabel);
+		this.add(livesValue);
+		this.add(clockLabel);
+		this.add(clockValue);
+		this.add(lastFlagLabel);
+		this.add(lastFlagValue);
+		this.add(foodLevelLabel);
+		this.add(foodLevelValue);
+		this.add(healthLevelLabel);
+		this.add(healthLevelValue);
+		this.add(soundLabel);
+		this.add(soundValue);
+	}
+	
+	public void setupLabels() {
+			
+			// show number of lives left
+			livesLabel = new Label("Lives: ");
+			livesValue = new Label("" + model.getLives());
+			livesLabel.getAllStyles().setFgColor(ColorUtil.BLUE);
+			livesValue.getAllStyles().setFgColor(ColorUtil.BLUE);
+
+			// show current clock value
+			clockLabel = new Label("Clock: ");
+			clockValue = new Label("" + model.getClock());
+			clockLabel.getAllStyles().setFgColor(ColorUtil.BLUE);
+
+			// show last flag Reached
+			lastFlagLabel = new Label("Last Flag Reached: ");
+			lastFlagValue = new Label("" + model.getAntFlagReached());
+			lastFlagLabel.getAllStyles().setFgColor(ColorUtil.BLUE);
+			lastFlagValue.getAllStyles().setFgColor(ColorUtil.BLUE);
+
+			// show food Level
+			foodLevelLabel = new Label("Player Food Level: ");
+			foodLevelValue = new Label("" + model.getFoodLevel());
+			foodLevelLabel.getAllStyles().setFgColor(ColorUtil.BLUE);
+			foodLevelValue.getAllStyles().setFgColor(ColorUtil.BLUE);
+
+			
+			// show healthLevel
+			healthLevelLabel = new Label("Damage Level: ");
+			healthLevelValue = new Label("" + model.getAntHealthLevel());
+			healthLevelLabel.getAllStyles().setFgColor(ColorUtil.BLUE);
+			healthLevelValue.getAllStyles().setFgColor(ColorUtil.BLUE);
+			
+			soundLabel = new Label("Sound: ");
+			soundValue = new Label("" + model.isSound());
+			soundLabel.getAllStyles().setFgColor(ColorUtil.BLUE);
+			soundValue.getAllStyles().setFgColor(ColorUtil.BLUE);
+
+			
+		}
+
+		public void updatew() {
+			livesValue.setText("" + model.getLives());
+			livesValue.getParent().revalidate();
+			clockValue.setText("" + model.getClock());
+			clockValue.getParent().revalidate();
+			lastFlagValue.setText("" + model.getAntFlagReached());
+			lastFlagValue.getParent().revalidate();
+			foodLevelValue.setText("" + model.getFoodLevel());
+			foodLevelLabel.getParent().revalidate();
+			healthLevelValue.setText("" + model.getAntHealthLevel());
+			healthLevelValue.getParent().revalidate();
+			soundValue.setText("" + model.isSound());
+			soundValue.getParent().revalidate();
+		}
+
+		@Override
+		public void update(Observable observable, Object data) {
+			this.updatew();
+			
+		
+	}
+	
+	
+}

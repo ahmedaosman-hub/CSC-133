@@ -1,0 +1,7 @@
+package com.mycompany.a2;
+
+import com.codename1.ui.Command;
+
+public class CommandFoodConsumption extends Command {
+
+}
