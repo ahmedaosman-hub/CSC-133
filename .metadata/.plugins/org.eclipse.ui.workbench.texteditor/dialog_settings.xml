@@ -6,25 +6,32 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="foodStation"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
-			<item value="FoodStation"/>
-			<item value="btnLeft"/>
-			<item value="btnAccelerate"/>
-			<item value="gw"/>
-			<item value="hcmd"/>
-			<item value="qcmd"/>
-			<item value="abtcmd"/>
-			<item value="tb"/>
-			<item value="accmd"/>
-			<item value="snc"/>
-			<item value="chkBoxcmd"/>
-			<item value=" "/>
+			<item value="Increasing food"/>
+			<item value="TheJourney"/>
+			<item value="Lives"/>
+			<item value="Damage"/>
+			<item value="increasing food"/>
+			<item value="food"/>
+			<item value="foo"/>
+			<item value="ChangeStrategies"/>
+			<item value="randx"/>
+			<item value="rand"/>
+			<item value="model"/>
+			<item value="spiderCollision"/>
+			<item value="spider"/>
+			<item value="antCollision"/>
+			<item value="Energy"/>
 		</list>
 		<list key="replacehistory">
+			<item value=""/>
+			<item value="gameWorld"/>
+			<item value="food"/>
+			<item value="flag"/>
+			<item value="foodConsumption"/>
 			<item value="leftButton"/>
 			<item value="buttonAccelerate"/>
-			<item value="gameWorld"/>
 			<item value="helpCommand"/>
 			<item value="quitCommand"/>
 			<item value="aboutCommand"/>
