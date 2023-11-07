@@ -8,24 +8,36 @@ import java.util.Random;
 
 // Represents the game's model
 public class GameWorld extends Observable {
-	private boolean sound = false; 
+	
+	private boolean endCol = false;
+	private boolean crashCol = false;
+	private boolean foodCol = false;
+	private boolean isPause = false;
+	private boolean positionable;
+	private double nonDisplayClock;
+	private boolean sound = false;
+	private int contWidth;
+	private int contHeight;
+	
 	private int mapHeight = 10;
 	private int mapWidth = 10;
 	private int lives;
 	private Random rand = new Random();
 	private int timer = 0;
 	private int clock = 0;
-	private Player ant;
+	private Ant ant;
 	private int flagSize = 15;
 	private int antSize = 25;
 	private boolean isExit = true;
 	private int winningFlag = 10; 
-	GameObjectCollection gameObjectList;
-	
+	private GameObject lastCollision; 
+private ArrayList<GameObject> colliderList = new ArrayList<GameObject>();	
+GameObjectCollection gameObjectList;
 	
 	public GameWorld() {
 		gameObjectList = new GameObjectCollection();
-		ant = new Player(antSize, new Point (500, 500), 0);
+		ant = new Ant(this,antSize, 0, new Point (500, 500));
+		lastCollision = ant; 
 	}
 
 	// Setting map dimensions
@@ -46,21 +58,23 @@ public class GameWorld extends Observable {
 			
 
 			// Creating flags (between 4 and 9 flags)
-			int flagCount = 9; //4 + rand.nextInt(6); // Randomly choose between 4 and 9 flags
+			int flagCount = 4 + rand.nextInt(6); // Randomly choose between 4 and 9 flags
 			for (int i = 1; i <= flagCount; i++) {
-				gameObjectList.add(new Flag(flagSize, new Point(randX(), randY()), i));
+				Point location = new Point(randX(), randY());
+				gameObjectList.add(new Flag(this, flagSize, location, i));
 			}
 
 			// Creating at least 2 spiders
 			int spiderCount = 2 + rand.nextInt(2); // Randomly choose 2 or 3 spiders
 			for (int i = 1; i <= spiderCount; i++) {
-				gameObjectList.add(new Spider(randObjSize(), new Point(randX(), randY())));
+				Point location = new Point(randX(), randY());
+				gameObjectList.add(new Spider(this, randObjSize(), location));
 			}
 
 			// Creating at least 2 food stations
 			int foodStationCount = 2 + rand.nextInt(3); // Randomly choose 2, 3, or 4 food stations
 			for (int i = 1; i <= foodStationCount; i++) {
-				gameObjectList.add(new FoodStation(randObjSize(), new Point(randX(), randY())));
+				gameObjectList.add(new FoodStation(this, randObjSize(), new Point(randX(), randY())));
 			}
 			
 			
@@ -95,7 +109,7 @@ public class GameWorld extends Observable {
 		this.notifyObservers();
 	}
 	
-	public void tick() {
+	public void tick(int i) {
 		if(ant.getHealthLevel()!=100 && ant.getFoodLevel() != 0 && ant.getLives()!=0) {
 			ant.setHeading(ant.getHeading());
 			ant.setFoodLevel(300);
@@ -126,6 +140,26 @@ public class GameWorld extends Observable {
 		notifyobs();
 	}
 	
+	public void foodStationCollision(GameObject temp) {
+	    if (temp instanceof FoodStation) {
+	        FoodStation foodStation = (FoodStation) temp;
+	        if (foodStation.getCapacity() != 0) {
+	            ant.setFoodLevel(ant.getFoodLevel() + foodStation.getCapacity());
+	            foodStation.setCapacity(0);
+	            foodStation.setColor(ColorUtil.rgb(0, 255, 191));
+	            // Add a new FoodStation to replace the consumed one
+	            gameObjectList.add(new FoodStation(this, randObjSize(), new Point(randX(), randY())));
+	            setFoodCol(true); // Set the foodCol flag to true
+	            notifyobs();
+	        }
+	    }
+	}
+
+	public void counterTime() {
+		nonDisplayClock += (1/ 50.00);
+		timer = (int) nonDisplayClock;
+	}
+	
 	public int getAntFlagReached() {
 		return ant.getLastFlagReached();
 	}
@@ -136,13 +170,8 @@ public class GameWorld extends Observable {
 	public int getAntHealthLevel() {
 		return ant.getHealthLevel();
 	}
-	public String isSound() {
-		if(this.sound) {
-			return "ON";
-		}
-		else {
-			return "OFF";
-		}
+	public boolean isSound() {
+		return sound; 
 	}
 	
 	public void spiderCollision() {
@@ -185,21 +214,7 @@ public class GameWorld extends Observable {
 		return timer; 
 	}
 	
-	public void foodStationCollision() {
-		IIterator iterator = gameObjectList.getIterator();
-		while(iterator.hasNext()) {
-			GameObject temp = (GameObject) iterator.getNext();
-			if(temp instanceof FoodStation) {
-				if(((FoodStation) temp).getCapacity()!=0) {
-					ant.setHealthLevel(((FoodStation) temp).getCapacity());
-					((FoodStation) temp).setCapacity(0);
-					temp.setColor(ColorUtil.rgb(0, 255, 0));
-					break;
-				}
-			}
-		}
-		gameObjectList.add(new FoodStation(randObjSize(), new Point(randX(), randY())));
-	}
+
 	
 	public void Timer() {
 		timer += 1;
@@ -222,6 +237,46 @@ public class GameWorld extends Observable {
 	
 	
 	
+	public Ant getAnt() {
+		return ant;
+	}
+	public boolean isPause() {
+		return isPause;
+	}
+	
+	public void setIsPause(boolean isPause) {
+		this.isPause = isPause;
+	}
+	
+	public boolean isPositionable() {
+		return positionable;
+	}
+	public void setPositionable(boolean positionable) {
+		this.positionable = positionable;
+	}
+	
+	
+	public boolean isFoodCol() {
+		return foodCol;
+	}
+	
+	public void setFoodCol(boolean foodCol) {
+		this.foodCol = foodCol;
+	}
+	
+	public boolean isCrashCol() {
+		return crashCol; 
+	}
+	
+	public void setCrashCol(boolean crashCol) {
+		this.crashCol = crashCol;
+	}
+	public boolean isEndCollision() {
+		return endCol;
+	}
+	public void setEndCollision(boolean endCol) {
+		this.endCol = endCol; 
+	}
 	// Exits for the Game. 'x' 
 		public void exit() {
 			if (isExit) {
@@ -243,6 +298,15 @@ public class GameWorld extends Observable {
 			ant.setFoodConsumptionRate(foodConsumptionRate);
 			System.out.println("Food Consumption Rate set to: " + foodConsumptionRate);
 		}
+		
+		public void setWidthHeight(int width, int height) {
+			contWidth = width;
+			contHeight = height;
+		}
+
+		
+		
+	
 	
 
 	

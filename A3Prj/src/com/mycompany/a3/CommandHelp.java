@@ -7,41 +7,44 @@ import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.table.TableLayout;
 
 public class CommandHelp extends Command {
-	private GameWorld gw;
-	
-	public CommandHelp(GameWorld gw) {
-		super("Help");
-		this.gw = gw;
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent ev) {
-		Dialog helpBox = new Dialog("Help", new TableLayout(10, 2));
-		
-		  helpBox.add(new Label("Command"));
-	        helpBox.add(new Label("Key Bindings"));
-	        helpBox.add(new Label("Accelerate"));
-	        helpBox.add(new Label("a"));
-	        helpBox.add(new Label("Brake"));
-	        helpBox.add(new Label("b"));
-	        helpBox.add(new Label("Left Turn"));
-	        helpBox.add(new Label("l"));
-	        helpBox.add(new Label("Right Turn"));
-	        helpBox.add(new Label("r"));
-	        helpBox.add(new Label("Energy"));
-	        helpBox.add(new Label("f"));
-	        helpBox.add(new Label("Spider"));
-	        helpBox.add(new Label("s"));
-	        helpBox.add(new Label("Tick"));
-	        helpBox.add(new Label("t"));
-	        helpBox.add(new Label("Exit"));
-	        helpBox.add(new Label("x"));
 
-	        Command okCommand = new Command("ok");
-	        Command c = Dialog.show("", helpBox, okCommand);
-	        if (c == okCommand) {
-	            return;
-	        }
+    private GameWorld gw;
+   
+    public CommandHelp(GameWorld gw) {
+        super("Help");
+        this.gw = gw;
+    }
+   
+    @Override
+    public void actionPerformed(ActionEvent ev) {
 
-	    }
-	}
+        Dialog helpBox = new Dialog("Help", new TableLayout(10, 2));
+
+        helpBox.add(new Label("Command"));
+        helpBox.add(new Label("Key Bindings"));
+        helpBox.add(new Label("Accelerate"));
+        helpBox.add(new Label("a"));
+        helpBox.add(new Label("Brake"));
+        helpBox.add(new Label("b"));
+        helpBox.add(new Label("Left Turn"));
+        helpBox.add(new Label("l"));
+        helpBox.add(new Label("Right Turn"));
+        helpBox.add(new Label("r"));
+        helpBox.add(new Label("Food"));
+        helpBox.add(new Label("e"));
+        helpBox.add(new Label("Ant"));
+        helpBox.add(new Label("s"));
+        helpBox.add(new Label("Tick"));
+        helpBox.add(new Label("t"));
+        helpBox.add(new Label("Exit"));
+        helpBox.add(new Label("x"));
+
+        Command okCommand = new Command("ok");
+        Command c = Dialog.show("", helpBox, okCommand);
+        if (c == okCommand) {
+            return;
+        }
+
+    }
+
+}

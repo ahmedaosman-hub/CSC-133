@@ -4,17 +4,13 @@
     <fullyQualifiedTypeName name="com.codename1.ui.Button"/>
     <fullyQualifiedTypeName name="com.codename1.ui.table.TableLayout"/>
     <fullyQualifiedTypeName name="com.codename1.ui.Dialog"/>
-    <fullyQualifiedTypeName name="com.codename1.charts.models.Point"/>
     <fullyQualifiedTypeName name="com.codename1.ui.Label"/>
     <fullyQualifiedTypeName name="com.codename1.ui.Container"/>
     <fullyQualifiedTypeName name="java.util.Observer"/>
     <fullyQualifiedTypeName name="java.util.Observable"/>
     <fullyQualifiedTypeName name="com.codename1.charts.util.ColorUtil"/>
     <fullyQualifiedTypeName name="com.codename1.ui.plaf.Border"/>
-    <fullyQualifiedTypeName name="com.codename1.ui.layouts.BorderLayout"/>
-    <fullyQualifiedTypeName name="com.codename1.ui.Command"/>
     <fullyQualifiedTypeName name="com.codename1.ui.layouts.BoxLayout"/>
-    <fullyQualifiedTypeName name="com.codename1.ui.events.ActionEvent"/>
     <fullyQualifiedTypeName name="com.codename1.ui.layouts.FlowLayout"/>
     <fullyQualifiedTypeName name="com.codename1.ui.Component"/>
     <fullyQualifiedTypeName name="com.codename1.ui.Toolbar"/>
@@ -22,4 +18,16 @@
     <fullyQualifiedTypeName name="java.util.Iterator"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.mycompany.a2.GameWorld"/>
+    <fullyQualifiedTypeName name="com.codename1.ui.util.UITimer"/>
+    <fullyQualifiedTypeName name="com.codename1.ui.layouts.BorderLayout"/>
+    <fullyQualifiedTypeName name="com.mycompany.a3.IIterator"/>
+    <fullyQualifiedTypeName name="com.codename1.ui.Display"/>
+    <fullyQualifiedTypeName name="java.io.InputStream"/>
+    <fullyQualifiedTypeName name="com.codename1.media.Media"/>
+    <fullyQualifiedTypeName name="com.codename1.media.MediaManager"/>
+    <fullyQualifiedTypeName name="com.codename1.charts.models.Point"/>
+    <fullyQualifiedTypeName name="com.codename1.ui.Command"/>
+    <fullyQualifiedTypeName name="com.codename1.ui.events.ActionEvent"/>
+    <fullyQualifiedTypeName name="java.util.Random"/>
+    <fullyQualifiedTypeName name="com.codename1.ui.Graphics"/>
 </qualifiedTypeNameHistroy>

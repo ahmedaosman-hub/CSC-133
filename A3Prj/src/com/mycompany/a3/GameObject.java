@@ -6,24 +6,25 @@ import com.codename1.ui.Graphics;
 import java.util.Random;
 import com.codename1.charts.models.Point;
 
-public class GameObject implements IDrawable{
+public abstract class GameObject implements IDrawable, ICollider{
     private int myColor;
     private Point location;
+    private boolean isCollided = false;
     private int size;
+    private double left, right, top, bottom;
+    GameWorld gameWorld;
 
-    public GameObject(int color) {
-        this(color, 0);
+   
+
+    public GameObject(GameWorld gameWorld, int size, Point location) {
+    	this.size = size;
+    	this.location = location;
+    	left = (int) (getX() - (size/2));
+    	right = (int) (getX() + (size / 2));
+    	top = (int) (getY() - (size / 2));
+    	bottom = (int) (getY() + (size / 2));
+    	this.gameWorld = gameWorld;
     }
-
-    public GameObject(int color, int size) {
-        this.myColor = color;
-        this.size = size;
-        Random rand = new Random();
-        float x = (float) rand.nextDouble() * 1000;
-        float y = (float) rand.nextDouble() * 1000;
-        this.setLocation(new Point(x, y));
-    }
-
     public float getX() {
         return getLocation().getX();
     }
@@ -32,6 +33,9 @@ public class GameObject implements IDrawable{
         return getLocation().getY();
     }
 
+    public int getSize() {
+    	return size;
+    }
     public void setX(float x) {
         getLocation().setX(x);
     }
@@ -48,9 +52,6 @@ public class GameObject implements IDrawable{
         return myColor;
     }
 
-    public int getSize() {
-        return size;
-    }
 
     public String toString() {
         return "loc=" + Math.round(getLocation().getX() * 10.0) + "," + Math.round(getLocation().getY() * 10) / 10.0 +
@@ -67,41 +68,62 @@ public class GameObject implements IDrawable{
     
     @Override
     public void draw(Graphics g, Point pCmpRelPrnt) {
-        int x = (int) (location.getX() - size / 2 + pCmpRelPrnt.getX());
-        int y = (int) (location.getY() - size / 2 + pCmpRelPrnt.getY());    	
-    	
-    	if (this instanceof Ant) {
-    		g.setColor(myColor);
-    		g.fillArc(x, y, size, size, 0, 360);
-    	}
-    	else if (this instanceof FoodStation) {
-    		g.setColor(myColor);
-    		g.fillRect(x, y, size, size);
-    		
-    	}
-    	else if (this instanceof Flag) {
-    		g.setColor(myColor);
-            int[] xPoints = { x, x + size, x + size / 2 };
-            int[] yPoints = { y + size, y + size, y };
-            g.fillPolygon(xPoints, yPoints, 3);
-            }
-    	else if (this instanceof Spider) {
-            g.setColor(myColor);
-            int[] xPoints = {
-                x, 
-                x + size / 2, 
-                x + size,
-                x + size / 2
-            };
-            int[] yPoints = {
-                y + size / 2, 
-                y, 
-                y + size / 2,
-                y + size
-            };
-            g.fillPolygon(xPoints, yPoints, 4); 
-    	}
-    g.setColor(ColorUtil.BLACK);
-    g.drawString("Label", x, y);
+        
 }
+    
+    public double getRight() {
+    	return (getX() + (size / 2));
+    }
+    
+    public double getLeft() {
+    	return (getX() - (size / 2));
+    }
+    public double getTop() {
+    	return (this.getY() - (size / 2));
+    }
+    public double getBottom() {
+    	return (getY() + (size/2));
+    }
+    public boolean getHasCollided() {
+    	return isCollided; 
+    }
+    
+    public void setHasCollided(boolean a) {
+    	isCollided = a;
+    }
+    
+    
+    public boolean collidesWith(GameObject objects) {
+    	if (getRight() < objects.getLeft() || getLeft() > objects.getRight()) {
+    		return false;
+    	}
+    	if (objects.getTop() > getBottom() || getTop() > objects.getBottom()) {
+    		return false;
+    	}
+    	
+    	return true;
+    }
+    
+    public void handleCollision(GameObject objects) {
+    	if(this instanceof Ant) {
+			if(objects instanceof FoodStation) {
+				if(! objects.getHasCollided()) {
+					objects.setHasCollided(true);
+					gameWorld.foodStationCollision(objects);
+				}
+			}
+			if(objects instanceof Flag) { 
+				if(!objects.getHasCollided()) {
+					gameWorld.flagCollision(((Flag) objects).getSequenceNumber());
+					objects.setColor(191);
+				}
+			}
+			
+			if(objects instanceof Spider) {
+				if(!objects.getHasCollided()) {
+				gameWorld.spiderCollision();
+				}
+			}
+    }
+    }
 }

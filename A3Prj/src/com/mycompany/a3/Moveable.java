@@ -8,8 +8,8 @@ public class Moveable extends GameObject {
 	private int foodLevel; 
 	
 	
-	public Moveable(int size, Point location) {
-		super(size);
+	public Moveable(GameWorld gw, int size, Point location) {
+		super(gw, size, location);
 }
 
 	

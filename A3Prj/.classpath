@@ -5,5 +5,9 @@
 	<classpathentry kind="lib" path="lib/CodenameOne.jar" sourcepath="lib/CodenameOne_SRC.zip"/>
 	<classpathentry kind="lib" path="lib/impl/cls"/>
 	<classpathentry kind="lib" path="lib/impl/stubs"/>
+	<classpathentry kind="lib" path="/Users/ahmedosman/Downloads/JMF-2.1.1e/lib/customizer.jar"/>
+	<classpathentry kind="lib" path="/Users/ahmedosman/Downloads/JMF-2.1.1e/lib/jmf.jar"/>
+	<classpathentry kind="lib" path="/Users/ahmedosman/Downloads/JMF-2.1.1e/lib/mediaplayer.jar"/>
+	<classpathentry kind="lib" path="/Users/ahmedosman/Downloads/JMF-2.1.1e/lib/multiplayer.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
