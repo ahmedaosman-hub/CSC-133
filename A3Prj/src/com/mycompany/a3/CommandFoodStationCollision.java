@@ -13,6 +13,10 @@ public class CommandFoodStationCollision extends Command {
 		this.gw = gw;
 	}
 	
+	
+	@Override 
+	public void actionPerformed(ActionEvent ev) {
+	}
 
 	
 }

@@ -2,7 +2,7 @@ package com.mycompany.a3;
 
 import com.codename1.charts.models.Point;
 
-public class Moveable extends GameObject {
+public abstract class Moveable extends GameObject {
 	private int heading = 0;
 	private int speed = 0;
 	private int foodLevel; 
@@ -38,7 +38,7 @@ public class Moveable extends GameObject {
 		this.foodLevel = foodLevel;
 	}
 
-	public void move() {
+	public void move(GameWorld temp, int i) {
 		if (foodLevel > 0) {
 			double newX = getX() + speed * Math.cos(Math.toRadians(heading));
 			double newY = getY() + speed * Math.sin(Math.toRadians(heading));
@@ -47,7 +47,7 @@ public class Moveable extends GameObject {
 				setX((float) newX);
 				setY((float) newY);
 			} else {
-				move();
+				move(temp, i);
 			}
 
 		} else {
@@ -59,6 +59,13 @@ public class Moveable extends GameObject {
 		String parentDesc = super.toString();
 		String myDesc = "foodLevel: " + foodLevel + " heading=" + heading + " speed=" + speed;
 		return parentDesc + myDesc;
+	}
+
+
+
+	public void changeHeading(char h) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

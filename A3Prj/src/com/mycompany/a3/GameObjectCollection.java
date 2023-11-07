@@ -29,33 +29,30 @@ public class GameObjectCollection implements ICollection {
 			return gameObjectList.get(currentIndex - 1);
 			
 		}
-
-		@Override
+		
+		@Override 
 		public IIterator getIterator() {
-			// TODO Auto-generated method stub
-			return null;
+			return gameObjectIterator;
 		}
-
-		@Override
+		
+		@Override 
 		public void add(Object object) {
-			// TODO Auto-generated method stub
 			
 		}
 		
-	
-		
 		
 	}
-
 	@Override
 	public void add(Object object) {
 		gameObjectList.add((GameObject) object);
-		
 	}
-
+	
+	public void remove(GameObject object) {
+		gameObjectList.remove(object);
+	}
+	
 	@Override
 	public IIterator getIterator() {
-		return new Iterator(); 
+		return new Iterator() ;
 	}
-
 }

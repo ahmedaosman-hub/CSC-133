@@ -24,12 +24,12 @@ public class CommandExit extends Command {
 		
 		Label label1 = new Label("");
 		
-		Command c = Dialog.show("Are you sure you would like to exit", label1, yes, no);
+		Command command = Dialog.show("Are you sure you would like to exit", label1, yes, no);
 		
-		if(c == yes) {
+		if(command == yes) {
 			gw.exit();
 		}
-		else if (c == no) {
+		else if (command == no) {
 			gw.dontQuit();
 		}
 	}

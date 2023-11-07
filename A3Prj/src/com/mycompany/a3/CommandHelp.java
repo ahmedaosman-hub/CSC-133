@@ -40,8 +40,8 @@ public class CommandHelp extends Command {
         helpBox.add(new Label("x"));
 
         Command okCommand = new Command("ok");
-        Command c = Dialog.show("", helpBox, okCommand);
-        if (c == okCommand) {
+        Command command = Dialog.show("", helpBox, okCommand);
+        if (command == okCommand) {
             return;
         }
 

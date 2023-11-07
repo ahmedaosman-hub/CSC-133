@@ -17,7 +17,7 @@ public class CommandSpiderCollision extends Command {
 
 	@Override
 	public void actionPerformed(ActionEvent ev) {
-		gw.spiderCollision();
+		gw.antCollision('s');
 
 	}
 }

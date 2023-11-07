@@ -13,6 +13,9 @@ public class CommandTick extends Command {
         this.gw = gw;
     }
 
-   
+   @Override
+   public void actionPerformed(ActionEvent ev) {
+	   
+   }
    
 }

@@ -20,25 +20,24 @@ public class BGSound implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error creating media: " + e.getMessage());
+            m = null;
         }
     }
 
     public void pause() {
-        if (m != null) {
+       
             m.pause();
-        }
+       
     }
 
     public void play(boolean b) {
-        if (m != null && !b) {
             m.play();
-        }
+        
     }
 
     public void run() {
-        if (m != null) {
             m.setTime(0);
             m.play();
-        }
+        
     }
 }
