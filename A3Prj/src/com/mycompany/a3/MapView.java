@@ -1,4 +1,4 @@
-package com.mycompany.a2;
+package com.mycompany.a3;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -17,7 +17,21 @@ public class MapView extends Container implements Observer{
 	}
 		
 	public void update(Observable o, Object arg) {
-		model.map();
+		repaint();
+	}
+	
+	public void repaint() {
+		paint();
+	}
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		
+		if (model != null) {
+		for (GameObject obj: model.getGameObjects()) {
+			obj.draw(g,  getParent().getAbsoluteX(), getParent().getAbsoluteY());
+		}
+		}
 	}
 }
 	
