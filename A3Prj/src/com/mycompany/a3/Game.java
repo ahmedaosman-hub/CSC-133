@@ -27,7 +27,7 @@ public class Game extends Form implements Runnable {
 	private boolean selected = true;
 	private static int mapX;
 	private static int mapY;
-	private BGSound bgSound = new BGSound("Music.mp3");
+	private BGSound bgSound = new BGSound("background.mp3");
 
 	public Game() {
 		// Create instances of GameWorld, MapView, and ScoreView

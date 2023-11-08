@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="contHeight"/>
 		<list key="findhistory">
+			<item value="contHeight"/>
+			<item value="BgSound"/>
+			<item value="randX"/>
+			<item value=""/>
+			<item value="spider"/>
+			<item value="collision"/>
+			<item value="ant"/>
+			<item value="setFood"/>
+			<item value="lifeReset"/>
+			<item value="setMapWidth"/>
+			<item value="getMap"/>
 			<item value="isSelected"/>
 			<item value="IsSelected"/>
 			<item value="pause"/>
 			<item value="stream"/>
-			<item value="FoodStation"/>
-			<item value="setWidthHeight"/>
-			<item value="Height"/>
-			<item value="counterTimer"/>
-			<item value="counterTime"/>
-			<item value="lifeReset"/>
-			<item value="randX"/>
-			<item value="randY"/>
-			<item value="randObjSize"/>
-			<item value="Increasing food"/>
-			<item value="TheJourney"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

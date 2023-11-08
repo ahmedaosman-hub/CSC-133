@@ -25,9 +25,9 @@
     <fullyQualifiedTypeName name="java.io.InputStream"/>
     <fullyQualifiedTypeName name="com.codename1.media.Media"/>
     <fullyQualifiedTypeName name="com.codename1.media.MediaManager"/>
-    <fullyQualifiedTypeName name="com.codename1.charts.models.Point"/>
     <fullyQualifiedTypeName name="com.codename1.ui.Command"/>
     <fullyQualifiedTypeName name="com.codename1.ui.events.ActionEvent"/>
     <fullyQualifiedTypeName name="java.util.Random"/>
+    <fullyQualifiedTypeName name="com.codename1.charts.models.Point"/>
     <fullyQualifiedTypeName name="com.codename1.ui.Graphics"/>
 </qualifiedTypeNameHistroy>

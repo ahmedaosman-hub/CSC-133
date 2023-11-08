@@ -128,10 +128,11 @@ public class GameWorld extends Observable {
 					if (temp instanceof Spider) {
 						((Moveable) temp).setHeading(((Moveable) temp).getHeading());
 						((Moveable) temp).move(this, i);
+					} else {
+						((Moveable) temp).move(this, i);
 					}
-				} else {
-					((Moveable) temp).move(this, i);
 				}
+
 			}
 			IIterator collide = gameObjectList.getIterator();
 
